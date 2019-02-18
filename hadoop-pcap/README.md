@@ -1,6 +1,6 @@
 Hadoop-pcap Manual
 
-Limitations
+**Limitations**
 
 This SerDe currently only supports deserialization of PCAPs. We use HiveIgnoreKeyTextOutputFormat to disable serialization in the OUTPUTFORMAT paramters below.
 
@@ -18,11 +18,11 @@ hive config file: ~/hive/conf/.hiverc
 
 3.Create an external table to read pcap file through the deserializer of hadoop-pcap
 
-hive> CREATE EXTERNAL TABLE pcaps_ext 
-      (ts bigint, ts_usec double, protocol string, src string, src_port int, dst string, dst_port int, len int, ttl int) 
-      ROW FORMAT SERDE 'net.ripe.hadoop.pcap.serde.PcapDeserializer' 
-      STORED AS INPUTFORMAT 'net.ripe.hadoop.pcap.io.PcapInputFormat' 
-      OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat' 
+hive> CREATE EXTERNAL TABLE pcaps_ext \
+      (ts bigint, ts_usec double, protocol string, src string, src_port int, dst string, dst_port int, len int, ttl int) \
+      ROW FORMAT SERDE 'net.ripe.hadoop.pcap.serde.PcapDeserializer' \
+      STORED AS INPUTFORMAT 'net.ripe.hadoop.pcap.io.PcapInputFormat' \
+      OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat' \
       LOCATION 'hdfs:///input';
 
 
