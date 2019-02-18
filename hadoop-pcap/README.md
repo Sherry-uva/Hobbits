@@ -4,6 +4,7 @@ Limitations
 
 This SerDe currently only supports deserialization of PCAPs. We use HiveIgnoreKeyTextOutputFormat to disable serialization in the OUTPUTFORMAT paramters below.
 
+
 1.Dowanload the hadoop-pcap library
 hadoop-pcap-serde-1.1-jar-with-dependencies.jar
 
