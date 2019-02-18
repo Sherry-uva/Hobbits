@@ -1,7 +1,10 @@
 Hadoop-pcap Manual
 
+Limitations
+This SerDe currently only supports deserialization of PCAPs. We use HiveIgnoreKeyTextOutputFormat to disable serialization in the OUTPUTFORMAT paramters below.
+
 1.Dowanload the hadoop-pcap library
-http://dl.bintray.com/hadoop-pcap/hadoop-pcap/net/ripe/hadoop/pcap/hadoop-pcap-serde/1.1/hadoop-pcap-serde-1.1-jar-with-dependencies.jar
+hadoop-pcap-serde-1.1-jar-with-dependencies.jar
 
 
 2.Add the library in Hive
