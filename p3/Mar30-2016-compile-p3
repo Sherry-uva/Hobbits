@@ -1,0 +1,23 @@
+find -name "*.java" > sources.txt
+
+javac -classpath `hadoop classpath`:.:/home/hadoop/p3/lib/* @sources.txt -d .
+
+jar -cvf p3.jar p3/
+
+in the ~/.bashrc file, add:
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:`echo *.jar`:`echo /home/hadoop/p3/lib/*.jar | sed 's/ /:/g'`
+
+hadoop jar p3.jar p3.runner.PcapTotalStats -libjars `echo /home/hadoop/p3/lib/*.jar | sed 's/ /,/g'` -r /small.pcap -d output -b 2014/06/19
+
+You can extract a jar file with the command :
+jar xf filename.jar
+
+
+editcap -r equinix-chicago.dirA.20140619-130000.UTC.anon.pcap 10k-pkt.pcap 1-10000 -F pcap
+Note: need to specify the output file format as pcap. Otherwise, the header format is different as described in https://wiki.wireshark.org/Development/LibpcapFileFormat
+Can use this website to check http://www.fileformat.info/tool/hexdump.htm
+
+In CAIDA traces, only layer-3 and layer-4 headers are kept, while p3 processes packets with Ethernet header as well. So need to change P3CoralProgram.java
+
+tcpdump -r old_file -w new_files -C 10
+the output of tcpdump is pcap format
