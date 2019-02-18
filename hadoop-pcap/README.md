@@ -28,15 +28,15 @@ hive> CREATE EXTERNAL TABLE pcaps_ext \
 
 4.Create internal tables using the external table
 
-hive> CREATE TABLE pcaps_orc STORED AS ORC AS SELECT * FROM pcaps_ext;
+hive> CREATE TABLE pcaps_orc STORED AS ORC AS SELECT * FROM pcaps_ext; \
 hive> CREATE TABLE pcaps_txt STORED AS TEXTFILE AS SELECT * FROM pcaps_ext;
 
-The mapreduce job-ID will be printed when creating internal table.
+The mapreduce job-ID will be printed when creating internal table.\
 We could use it to get the execution information from below
 
 /tmp/hadoop-yarn/staging/history/done_intermediate/hadoop/<jobID>.summary
 
-The output files converted from pcap file will be stored in the HDFS warehouse folder.
+The output files converted from pcap file will be stored in the HDFS warehouse folder.\
 We could check their total size and compare with input files.
 
 hive> dfs -du -s -h /user/hive/warehouse/<internal table name>
